@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/affinity: "true"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nginx
+              servicePort: 80

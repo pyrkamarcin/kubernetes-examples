@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: StatefulSet # new
+metadata:
+  name: application-statefulset # new
+spec:
+  replicas: 5
+  serviceName: application # new
+  updateStrategy: # .
+    type: RollingUpdate # .
+  selector:
+    matchLabels:
+      name: application
+      stage: dev
+  template:
+    metadata:
+      labels:
+        name: application
+        stage: dev
+    spec:
+      containers:
+        - name: application
+          image: containous/whoami:v1.4.0
+          resources:
+            limits:
+              memory: "32Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: 80

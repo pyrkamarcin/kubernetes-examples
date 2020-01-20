@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-application-deployment
+spec:
+  replicas: {{ .Values.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      name: application
+      stage: {{ .Values.stage }}
+      relase: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        name: application
+        stage: {{ .Values.stage }}
+        relase: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: application
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          env:
+            - name: MY_DB_PASSWORD
+              value: password
+          resources:
+            limits:
+              memory: "32Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: {{ .Values.application.containerPort }}

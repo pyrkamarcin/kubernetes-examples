@@ -1,0 +1,15 @@
+replicas: 5
+application:
+    containerPort: 80
+
+image:
+    name: containous/whoami
+    tag: v1.4.0
+
+stage: dev
+
+mariadb:
+    db:
+        user: my_user
+        password: myPassword
+        
