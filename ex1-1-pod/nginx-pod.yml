@@ -4,12 +4,14 @@ metadata:
   name: nginx
   labels:
     app: nginx
+    stage: dev
 spec:
   containers:
   - name: nginx
     image: nginx:latest
     ports:
     - containerPort: 80
+    - containerPort: 81
     resources:
       limits:
         memory: "256Mi"

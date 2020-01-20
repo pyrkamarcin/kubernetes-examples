@@ -5,6 +5,7 @@ metadata:
 spec:
   selector:
     app: nginx
+    stage: dev
   type: ClusterIP
   ports:
     - port: 80
@@ -19,6 +20,7 @@ metadata:
 spec:
   selector:
     app: nginx
+    stage: dev
   type: LoadBalancer
   ports:
     - port: 8080
