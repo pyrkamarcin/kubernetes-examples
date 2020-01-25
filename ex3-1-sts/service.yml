@@ -1,27 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: application-service
+  name: mysql-service
 spec:
   selector:
-    name: application
+    name: mysql
     stage: dev
-  type: ClusterIP
   ports:
-    - port: 80
-      targetPort: 80
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: application-service-public
-spec:
-  selector:
-    name: application
-    stage: dev
-  type: LoadBalancer
-  ports:
-    - port: 80
-      targetPort: 80
+    - port: 3306
+      targetPort: 3306
