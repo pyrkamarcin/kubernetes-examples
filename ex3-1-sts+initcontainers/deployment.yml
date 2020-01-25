@@ -1,0 +1,94 @@
+# Source: ex0-2-wordpress/templates/wordpress-deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      name: wordpress
+      release: wordpress
+  template:
+    metadata:
+      labels:
+        name: wordpress
+        release: wordpress
+    spec:
+      initContainers:
+        - name: init-mydb
+          image: mysql:5.7.29
+          command:
+            [
+              "sh",
+              "-c",
+              'until mysql -h mysql-service -uroot -prootpassword -e "SELECT 1"; do echo waiting for mysql-service; sleep 2; done;',
+            ]
+      containers:
+        - name: wordpress
+          image: wordpress:5.3.2-php7.2-apache
+          resources:
+            limits:
+              memory: 500Mi
+              cpu: 1000m
+            requests:
+              memory: 256Mi
+              cpu: 500m
+          ports:
+            - containerPort: 80
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: mysql-service
+            - name: WORDPRESS_DB_USER
+              value: user
+            - name: WORDPRESS_DB_PASSWORD
+              value: password
+            - name: WORDPRESS_DB_NAME
+              value: example
+          volumeMounts:
+            - name: wordpress-claim
+              mountPath: /var/www/html
+          livenessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+            successThreshold: 1
+            httpGet:
+              path: /wp-login.php
+              port: 80
+              scheme: HTTP
+          readinessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+            successThreshold: 1
+            httpGet:
+              path: /wp-login.php
+              port: 80
+              scheme: HTTP
+      volumes:
+        - name: wordpress-claim
+          persistentVolumeClaim:
+            claimName: wordpress-claim
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-claim
+  labels:
+    name: wordpress
+    release: wordpress
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
