@@ -17,7 +17,7 @@ spec:
             backend:
               serviceName: monolit
               servicePort: 80
-          - path: /api/v1(/|$)(.*)
+          - path: /api/v1/users(/|$)(.*)
             backend:
-              serviceName: endpoint_backend
+              serviceName: endpoint_backend_users
               servicePort: 80
