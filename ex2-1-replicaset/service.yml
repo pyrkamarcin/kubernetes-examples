@@ -5,11 +5,10 @@ metadata:
 spec:
   selector:
     name: application
-    stage: dev
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8080
 
 ---
 
@@ -20,8 +19,7 @@ metadata:
 spec:
   selector:
     name: application
-    stage: dev
   type: LoadBalancer
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8080

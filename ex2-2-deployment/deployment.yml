@@ -8,30 +8,26 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       name: application
-      stage: dev
   template:
     metadata:
+      name: application
       labels:
         name: application
         stage: dev
     spec:
       containers:
         - name: application
-          image: containous/whoami:v1.4.0
+          image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
+          ports:
+            - containerPort: 8080
           resources:
             limits:
               memory: "32Mi"
-              cpu: "100m"
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - mountPath: /usr/upload/
-              name: my-storage
-      volumes:
-        - name: my-storage
-          persistentVolumeClaim:
-              claimName: my-claim
+              cpu: "250m"
+            requests:
+              memory: "32Mi"
+              cpu: "125m"
