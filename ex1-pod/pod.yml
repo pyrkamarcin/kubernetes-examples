@@ -4,7 +4,6 @@ metadata:
   name: application
   labels:
     name: application
-    stage: dev
 spec:
   containers:
     - name: application
