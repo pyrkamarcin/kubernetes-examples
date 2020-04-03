@@ -3,7 +3,7 @@ kind: ReplicaSet
 metadata:
   name: application-replicaset
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       name: application
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: application
-          image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
+          image: containous/whoami
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           resources:
             limits:
               memory: "32Mi"

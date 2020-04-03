@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: application
+  name: application-static
   labels:
-    name: application
+    name: application_static
 spec:
   containers:
     - name: application
@@ -17,4 +17,3 @@ spec:
         requests:
           memory: "32Mi"
           cpu: "125m"
-          
