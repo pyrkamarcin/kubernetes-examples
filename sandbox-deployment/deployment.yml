@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-deployment
+spec:
+  replicas: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 100%
+  selector:
+    matchLabels:
+      name: application
+  template:
+    metadata:
+      name: application
+      labels:
+        name: application
+    spec:
+      containers:
+        - name: application
+          image: nginx:1.16
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "32Mi"
+              cpu: "250m"
+            requests:
+              memory: "32Mi"
+              cpu: "125m"
