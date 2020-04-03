@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ps
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          image: busybox
+          command: ["ps",  "aux"]
+      restartPolicy: Never
+  backoffLimit: 2
