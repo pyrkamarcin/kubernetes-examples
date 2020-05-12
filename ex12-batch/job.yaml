@@ -3,11 +3,18 @@ kind: Job
 metadata:
   name: ps
 spec:
+  backoffLimit: 4
   template:
     spec:
       containers:
         - name: app
           image: busybox
-          command: ["ps",  "aux"]
+          command: ["get", "token"]
+          volumeMounts:
+            - name: internal-test-claim
+              mountPath: /mnt/test
+      volumes:
+        - name: internal-test-claim
+          persistentVolumeClaim:
+            claimName: test-claim
       restartPolicy: Never
-  backoffLimit: 2

@@ -1,9 +1,9 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: ps-cron
+  name: ps-create-cron
 spec:
-  schedule: "*/2 * * * *"
+  schedule: "0 */12 * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   jobTemplate:
@@ -14,5 +14,26 @@ spec:
           containers:
             - name: app
               image: busybox
-              command: ["ps",  "aux"]
+              command: ["get", "token"]
+              volumeMounts:
+                - name: internal-test-claim
+                  mountPath: /mnt/test
+          volumes:
+            - name: internal-test-claim
+              persistentVolumeClaim:
+                claimName: test-claim
           restartPolicy: Never
+
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
