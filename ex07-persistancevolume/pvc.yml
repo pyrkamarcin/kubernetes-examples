@@ -1,12 +1,9 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: nginx-pvc
+  name: my-nginx
 spec:
-  accessModes:
-    - ReadWriteOnce
+  accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 500M
-  storageClassName: hostpath
-  volumeMode: Filesystem
+      storage: 200Mi

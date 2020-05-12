@@ -24,11 +24,8 @@ spec:
           volumeMounts:
             - mountPath: /usr/share/nginx/html
               readOnly: true
-              name: my-nginx-configmap
+              name: my-nginx
       volumes:
-        - name: my-nginx-configmap
-          configMap:
-            name: nginx-configmap
-            items:
-              - key: index.html
-                path: index.html
+        - name: my-nginx
+          persistentVolumeClaim:
+            claimName: my-nginx
