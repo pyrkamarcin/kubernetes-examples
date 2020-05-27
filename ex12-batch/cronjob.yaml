@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: ps-create-cron
 spec:
-  schedule: "0 */12 * * *"
+  schedule: "* * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   jobTemplate:
@@ -14,7 +14,7 @@ spec:
           containers:
             - name: app
               image: busybox
-              command: ["get", "token"]
+              command: ["ps", "-a"]
               volumeMounts:
                 - name: internal-test-claim
                   mountPath: /mnt/test

@@ -22,11 +22,11 @@ spec:
           image: mysql:5.7.29
           resources:
             limits:
-              memory: 1Gi
-              cpu: 1200m
-            requests:
-              memory: 256Mi
+              memory: 2Gi
               cpu: 1000m
+            requests:
+              memory: 1Gi
+              cpu: 500m
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: "rootpassword"
@@ -70,4 +70,4 @@ spec:
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
-            storage: 200Mi
+            storage: 1Gi

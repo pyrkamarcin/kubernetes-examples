@@ -13,7 +13,7 @@ data:
       <title>Title</title>
     </head>
 
-    <body>
+    <body style="background: pink;">
 
       <header>
         <nav>
@@ -55,4 +55,3 @@ data:
     </body>
 
     </html>
-    

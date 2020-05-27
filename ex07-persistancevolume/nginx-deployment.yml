@@ -24,8 +24,8 @@ spec:
           volumeMounts:
             - mountPath: /usr/share/nginx/html
               readOnly: true
-              name: my-nginx
+              name: my-internal-nginx
       volumes:
-        - name: my-nginx
+        - name: my-internal-nginx
           persistentVolumeClaim:
             claimName: my-nginx

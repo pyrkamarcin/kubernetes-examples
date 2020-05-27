@@ -9,7 +9,7 @@ spec:
       containers:
         - name: app
           image: busybox
-          command: ["get", "token"]
+          command: ["ps", "-a"]
           volumeMounts:
             - name: internal-test-claim
               mountPath: /mnt/test
