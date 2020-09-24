@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: mysql-service
 spec:
+  type: ClusterIP
   selector:
     name: mysql
     stage: dev
