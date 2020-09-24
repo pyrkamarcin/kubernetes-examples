@@ -16,8 +16,7 @@ metadata:
   name: nginx-ingress
 spec:
   rules:
-    - host: nginx.localhost
-      http:
+    - http:
         paths:
           - path: /
             backend:
