@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: application-static
   labels:
-    name: application_static
+    name: application-static
 spec:
   containers:
     - name: application

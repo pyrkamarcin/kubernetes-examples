@@ -1,34 +1,26 @@
 apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
-      app: nginx
+      app: my-app
   template:
     metadata:
       labels:
-        app: nginx
+        app: my-app
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.14
+        - name: my-app
+          image: docker.io/jetalone/my-app
           resources:
             limits:
               memory: "256Mi"
               cpu: "500m"
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: /usr/share/nginx/html
-              readOnly: true
-              name: my-nginx-configmap
-      volumes:
-        - name: my-nginx-configmap
-          configMap:
-            name: nginx-configmap
-            items:
-              - key: index.html
-                path: index.html
+kind: Deployment
+metadata:
+  name: my-app

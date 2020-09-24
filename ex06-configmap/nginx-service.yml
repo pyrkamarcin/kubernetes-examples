@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name:  my-app-service
 spec:
   selector:
-    app: nginx
+    app:  my-app
   type: ClusterIP
   ports:
     - port: 80
@@ -13,12 +13,13 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: my-app-ingress
 spec:
   rules:
     - http:
         paths:
           - path: /
             backend:
-              serviceName: nginx
+              serviceName: my-app-service
               servicePort: 80
+              

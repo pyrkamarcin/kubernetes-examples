@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: application-deployment
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -20,13 +20,13 @@ spec:
     spec:
       containers:
         - name: application
-          image: containous/whoami
+          image: containous/whoami:latest
           ports:
             - containerPort: 80
           resources:
             limits:
-              memory: "32Mi"
-              cpu: "250m"
+              memory: "64Mi"
+              cpu: "500m"
             requests:
               memory: "32Mi"
-              cpu: "125m"
+              cpu: "250m"
