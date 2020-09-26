@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: wordpress
 spec:
-  replicas: 3
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -33,11 +33,11 @@ spec:
           image: wordpress:5.3.2-php7.2-apache
           resources:
             limits:
-              memory: 500Mi
-              cpu: 1000m
-            requests:
               memory: 256Mi
               cpu: 500m
+            requests:
+              memory: 256Mi
+              cpu: 250m
           ports:
             - containerPort: 80
           env:
