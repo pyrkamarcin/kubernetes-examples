@@ -1,1 +1,1 @@
-# StatefulSet + InitContainers
+# InitContainers
