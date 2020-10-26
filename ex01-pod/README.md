@@ -15,5 +15,5 @@ kubectl apply -f pod.yml
 Or:
 
 ```bash
-kubectl delete pods application-static
+kubectl delete pods application
 ```
