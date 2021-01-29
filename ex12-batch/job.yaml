@@ -10,11 +10,11 @@ spec:
         - name: app
           image: busybox
           command: ["ps", "-a"]
-          volumeMounts:
-            - name: internal-test-claim
-              mountPath: /mnt/test
-      volumes:
-        - name: internal-test-claim
-          persistentVolumeClaim:
-            claimName: test-claim
+      #     volumeMounts:
+      #       - name: internal-test-claim
+      #         mountPath: /mnt/test
+      # volumes:
+      #   - name: internal-test-claim
+      #     persistentVolumeClaim:
+      #       claimName: test-claim
       restartPolicy: Never

@@ -15,27 +15,27 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress-service
+  name: wordpress-service-public
 spec:
   selector:
     name: wordpress
     release: wordpress
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - port: 80
       targetPort: 80
 
 ---
 
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: wordpress-ingress
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /
-            backend:
-              serviceName: wordpress-service
-              servicePort: 80
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: wordpress-ingress
+# spec:
+#   rules:
+#     - http:
+#         paths:
+#           - path: /
+#             backend:
+#               serviceName: wordpress-service
+#               servicePort: 80

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+data:
+  index.html: |
+    <html>
+      <body>
+        <h1>{{ .Release.Name }} - {{ .Values.subtitle | default "test" }}</h1>
+      </body>
+    </html>

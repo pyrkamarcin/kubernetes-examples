@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: mysql-statefulset
 spec:
-  replicas: 1
+  replicas: 3
   serviceName: mysql
   updateStrategy:
     type: RollingUpdate
@@ -23,7 +23,7 @@ spec:
           resources:
             limits:
               memory: 1Gi
-              cpu: 1200m
+              cpu: 1500m
             requests:
               memory: 512Mi
               cpu: 1000m

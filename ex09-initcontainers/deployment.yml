@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: wordpress
 spec:
-  replicas: 1
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -90,4 +90,4 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi
+      storage: 100Mi
