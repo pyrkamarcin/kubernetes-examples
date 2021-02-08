@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: application
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: application
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: application
     spec:
       containers:
         - name: application
@@ -30,7 +30,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: {{ .Release.Name }}-config
+            name: application-config
             items:
               - key: index.html
                 path: index.html

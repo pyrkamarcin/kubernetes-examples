@@ -1,6 +1,0 @@
-replicas: 1
-
-database:
-    user: user
-    name: ghost
-    pass: cGFzc3dvcmQ=

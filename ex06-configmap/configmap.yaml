@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: application-config
+data:
+  index.html: |
+    <html>
+      <body>
+        <h1>application - test</h1>
+      </body>
+    </html>
