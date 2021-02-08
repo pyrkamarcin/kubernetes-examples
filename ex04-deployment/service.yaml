@@ -23,16 +23,3 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
-
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#  name: application-service-public
-# spec:
-#  selector:
-#    name: application
-#  type: NodePort
-#  ports:
-#    - port: 30134
-#      targetPort: 8080
