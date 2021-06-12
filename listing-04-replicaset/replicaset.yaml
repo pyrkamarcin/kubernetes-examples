@@ -16,17 +16,7 @@ spec:
       containers:
         - name: application
           image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
-          env:
-            - name: MY_ENV
-              value: test1
-            - name: MY_ENV_FROM_CONFIGMAP
-              valueFrom:
-                configMapKeyRef:
-                  name: application-configmap
-                  key: stage
-          volumeMounts:
-            - mountPath: /app
-              name: configuration
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           resources:
@@ -36,19 +26,3 @@ spec:
             requests:
               memory: "32Mi"
               cpu: "125m"
-      volumes:
-        - name: configuration
-          configMap:
-            name: application-configmap
----
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: application-configmap
-data:
-  stage: test
-  index.html: |
-    <html>
-    </html>
-

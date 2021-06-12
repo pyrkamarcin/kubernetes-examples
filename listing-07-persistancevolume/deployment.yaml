@@ -1,24 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: application
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      name: application
   template:
     metadata:
       labels:
-        app: nginx
+        name: application
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.14
+        - name: application
+          image: nginx
           resources:
             limits:
               memory: "256Mi"
               cpu: "500m"
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
           ports:
             - containerPort: 80
           volumeMounts:

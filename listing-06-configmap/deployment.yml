@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: application
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: application
+      name: application
   template:
     metadata:
       labels:
-        app: application
+        name: application
     spec:
       containers:
         - name: application
