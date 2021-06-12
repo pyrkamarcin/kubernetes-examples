@@ -24,18 +24,3 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-
----
-
-# apiVersion: extensions/v1beta1
-# kind: Ingress
-# metadata:
-#   name: wordpress-ingress
-# spec:
-#   rules:
-#     - http:
-#         paths:
-#           - path: /
-#             backend:
-#               serviceName: wordpress-service
-#               servicePort: 80

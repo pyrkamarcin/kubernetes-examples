@@ -14,26 +14,5 @@ spec:
           containers:
             - name: app
               image: busybox
-              command: ["ps", "-a"]
-          #     volumeMounts:
-          #       - name: internal-test-claim
-          #         mountPath: /mnt/test
-          # volumes:
-          #   - name: internal-test-claim
-          #     persistentVolumeClaim:
-          #       claimName: test-claim
+              command: [ "ps", "-a" ]
           restartPolicy: Never
-
-
----
-
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: test-claim
-# spec:
-#   accessModes:
-#     - ReadWriteMany
-#   resources:
-#     requests:
-#       storage: 1Gi

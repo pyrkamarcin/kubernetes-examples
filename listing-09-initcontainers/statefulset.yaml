@@ -40,7 +40,7 @@ spec:
             - containerPort: 3306
           livenessProbe:
             exec:
-              command: ["mysqladmin", "ping"]
+              command: [ "mysqladmin", "ping" ]
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 5
@@ -48,13 +48,13 @@ spec:
             exec:
               command:
                 [
-                  "mysql",
-                  "-h",
-                  "127.0.0.1",
-                  "-uroot",
-                  "-prootpassword",
-                  "-e",
-                  "SELECT 1",
+                    "mysql",
+                    "-h",
+                    "127.0.0.1",
+                    "-uroot",
+                    "-prootpassword",
+                    "-e",
+                    "SELECT 1",
                 ]
             initialDelaySeconds: 5
             periodSeconds: 2
@@ -67,7 +67,7 @@ spec:
     - metadata:
         name: data
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
             storage: 1Gi

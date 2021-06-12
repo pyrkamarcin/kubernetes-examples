@@ -24,9 +24,9 @@ spec:
           image: mysql:5.7.29
           command:
             [
-              "sh",
-              "-c",
-              'until mysql -h mysql-service -uroot -prootpassword -e "SELECT 1"; do echo waiting for mysql-service; sleep 2; done;',
+                "sh",
+                "-c",
+                'until mysql -h mysql-service -uroot -prootpassword -e "SELECT 1"; do echo waiting for mysql-service; sleep 2; done;',
             ]
       containers:
         - name: wordpress
